@@ -8,8 +8,8 @@ in {
     ./options.nix
   ];
   config = {
-    environment.sessionVariables = {
-      TEST_COLOR = builtins.toJSON config.theme.colors;
-    };
+    fonts.packages = [
+      config.theme.font.package
+    ];
   };
 }
