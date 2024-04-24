@@ -9,7 +9,7 @@
     self,
     nixpkgs,
   }: {
-    lib = import ./lib {inherit (nixpkgs) lib;};
+    lib = import ./lib;
 
     nixosModules.default = import ./module.nix;
   };

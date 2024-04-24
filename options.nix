@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }: let
   mTypes = import ./types.nix {inherit lib;};
@@ -10,7 +11,31 @@ in {
       package = lib.mkOption {
         description = "The package for the font used for this theme.";
         default = null;
-        example = pkgs.monoid;
+        example = pkgs.fira-code;
+        type = lib.types.package;
+      };
+
+      name = lib.mkOption {
+        description = "Name for the font.";
+        default = "";
+        example = "Terminess Nerd Font";
+        type = lib.types.str;
+      };
+    };
+
+    symbolsFont = {
+      package = lib.mkOption {
+        description = "The package for the symbols font used for this theme.";
+        default = null;
+        example = pkgs.material-icons;
+        type = lib.types.package;
+      };
+
+      name = lib.mkOption {
+        description = "Name for the font.";
+        default = "";
+        example = "Material Icons";
+        type = lib.types.str;
       };
     };
 
