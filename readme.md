@@ -4,7 +4,7 @@
 TODO:
 
 - [x] Colors aliases
-- [ ] Fix alpha on rgba because I'm a darn idiot
+- [ ] Fix alpha on the whole thing because I'm a darn idiot
 - [ ] Documentation for referencing templates
 - [ ] CI with checking and an auto generated documentation
 - [ ] Wallpaper ?
