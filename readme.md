@@ -1,15 +1,6 @@
 # Nix-cooker
 
 **Beware, this software is WIP**
-TODO:
-
-- [x] Colors aliases
-- [ ] Fix alpha on the whole thing because I'm a darn idiot
-- [ ] Documentation for referencing templates
-- [ ] CI with checking and an auto generated documentation
-- [ ] Wallpaper ?
-- [ ] Themes (cursor, GTK, SDDM)?
-
 A little help to cook your rices with nix.
 
 Nix-Cooker aims to centralize your themes configs in one place, and allow having a separate batch of hosts, and homes.
@@ -165,3 +156,16 @@ Thanks a lot to writers of my sources of inspiration :
 ## Contributing ?
 
 I am open to PRs, it'll be my pleasure to review yours.
+
+### Next features
+
+The following are the next features to be implemented. Add yours with a relevant issue or by contacting me somehow.
+
+- [x] Colors aliases
+- [x] Fix alpha on the whole thing because I'm a darn idiot
+- [ ] Documentation for referencing templates
+- [ ] CI with checking and an auto generated documentation
+- [ ] Home manager module
+- [ ] Wallpaper ?
+- [ ] Themes (cursor, GTK, SDDM)?
+- [ ] Regular dotfiles generator
