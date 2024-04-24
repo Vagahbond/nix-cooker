@@ -1,6 +1,12 @@
 # Nix-cooker
 
 **Beware, this software is WIP**
+TODO:
+
+- [ ] Colors aliases
+- [ ] Fix alpha on rgba because I'm a darn idiot
+- [ ] Documentation for referencing templates
+- [ ] CI with checking and an auto generated documentation
 
 A little help to cook your rices with nix.
 
