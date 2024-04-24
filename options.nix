@@ -206,6 +206,39 @@ in {
         };
         type = mTypes.color;
       };
+
+      good = lib.mkOption {
+        description = "Alias for your sementically good color";
+        default = config.theme.colors.base0B;
+        example = "#FFFFFF";
+        type = mTypes.color;
+      };
+      warning = lib.mkOption {
+        description = "Alias for your color that signifies a warning";
+        default = config.theme.colors.base09;
+        example = "#FFFFFF";
+        type = mTypes.color;
+      };
+      bad = lib.mkOption {
+        description = "Alias for your color that signifies an error or a bad thing (EG: empty battery)";
+        default = config.theme.colors.base08;
+        example = "#FFFFFF";
+        type = mTypes.color;
+      };
+
+      accent = lib.mkOption {
+        description = "The color that you want to use as an accent for your theme";
+        default = config.theme.colors.base0B;
+        example = "#FFFFFF";
+        type = mTypes.color;
+      };
+
+      custom = lib.mkOption {
+        description = "Custom aliases that you might want to use for your own theme.";
+        default = {};
+        example = {};
+        type = lib.types.attrsOf mTypes.color;
+      };
     };
   };
 }
