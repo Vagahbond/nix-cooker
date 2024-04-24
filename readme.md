@@ -7,6 +7,8 @@ TODO:
 - [ ] Fix alpha on rgba because I'm a darn idiot
 - [ ] Documentation for referencing templates
 - [ ] CI with checking and an auto generated documentation
+- [ ] Wallpaper ?
+- [ ] Themes (cursor, GTK, SDDM)?
 
 A little help to cook your rices with nix.
 
