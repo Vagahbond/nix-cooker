@@ -22,27 +22,27 @@
     else color;
 
   checkRGBAAlpha = n:
-    if n > 1.0 || !builtins.isFloat
+    if n > 1.0 || !builtins.isFloat n
     then throw "Invalid value given for Alpha component"
     else n;
 
-  getHexForDec = h: (lib.lists.findSingle (n: n.dec == h) null null hexToDec).hex;
+  getHexForDec = d: (lib.lists.findSingle (n: n.dec == d) null null hexToDec).hex;
 
-  mkHex = n: "${getHexForDec (n / 16)}${getHexForDec (n - (16 * (n / 16)))}";
+  parseDec = n: "${getHexForDec (n / 16)}${getHexForDec (n - (16 * (n / 16)))}";
 
   normalizeHex = color:
     if builtins.isString color
     then color
-    else "#${mkHex color.r}${mkHex color.g}${mkHex color.b}";
+    else "#${parseDec color.r}${parseDec color.g}${parseDec color.b}";
 
   checkHexAlpha = alpha:
-    if builtins.match "[1-9a-fA-F]{2}"
+    if builtins.match "[1-9a-fA-F]{2}" alpha != null
     then alpha
     else throw "Invalid value given for Alpha component";
-in {
+in rec {
   mkRGB = color: let nColor = normalizeRGB color; in "rgb(${builtins.toString nColor.r}, ${builtins.toString nColor.g}, ${builtins.toString nColor.b})";
 
-  mkRGBA = color: alpha: let nColor = normalizeRGB color; in "rgba(${builtins.toString nColor.r}, ${builtins.toString nColor.g}, ${builtins.toString nColor.b}, ${builtins.toString checkRGBAAlpha alpha})";
+  mkRGBA = color: alpha: let nColor = normalizeRGB color; in "rgba(${builtins.toString nColor.r}, ${builtins.toString nColor.g}, ${builtins.toString nColor.b}, ${builtins.toString (checkRGBAAlpha alpha)})";
 
   mkHHex = normalizeHex;
   mkHex = color: builtins.substring 1 6 (normalizeHex color);

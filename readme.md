@@ -42,7 +42,7 @@ Here is an example of a theme :
 
 ```nix
     theme = {
-    colors = {
+    colors = rec {
       base00 = {
         r = 253;
         g = 253;
@@ -50,7 +50,11 @@ Here is an example of a theme :
       };
       base01 = "#AABBCC";
       # ... other colors
+      good = base00;
+
     };
+
+
 
     font = {
       package = pkgs.nerdfonts.override {fonts = ["Terminus"];};
@@ -82,6 +86,9 @@ A template is a `function` to which several arguments, including logic and data,
   mkRGB,
   mkRGBA,
   mkHex,
+  mkHHex,
+  mkHexA,
+  mkHHexA,
   mkFontName,
 }: ''
   Hello this is a template
@@ -92,10 +99,13 @@ A template is a `function` to which several arguments, including logic and data,
 
   ${mkRGBA colors.base00} will provide "rgba(255, 255. 255. 255)"
 
-  ${mkHex colors.base00 {
-    alpha = true;
-    hashtag = true;
-  }} will provide "#FFFFFFFF"
+  ${mkHex colors.good} will provide "FFFFFF"
+
+  ${mkHHex colors.base00 } will provide "#FFFFFF"
+
+  ${mkHHexA colors.base00 } will provide "#FFFFFFFF"
+
+  ${mkHexA colors.base00 } will provide "FFFFFFFF"
 
   You can also get your font's name : ${font.name}
 
@@ -127,6 +137,8 @@ in {
 
 ```
 
+Then, you can reference it this way :
+
 ### Available functions
 
 Several functions are usable imported from `inputs.nix-cooker.lib`.
@@ -136,15 +148,20 @@ Here are their description.
 Mind you:
 A `color` here references the colors saved in `theme.colors.<color name>` in your config, whether it be in hex or RGB format.
 
-| Function          | Args                                                                                                                     | Example return value                  | Desc                                                                                                                       |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| mkRGB             | A color                                                                                                                  | rgb(0, 0, 0)                          | Expresses a color in css rgb format                                                                                        |
-| mkRGBA            | A color                                                                                                                  | rgba(0, 0, 0, 0)                      | Expresses a color in css rgba format                                                                                       |
-| mkHex             | A color, and then `alpha` and `hashtag` optional flags that you can enable or disable.                                   | #FFFFFF or #FFFFFFFF or FFFFFF        | Expresses a color in hexadecimal format, with a possibility to remove the `#` or include the alpha channel(defaults to 1). |
-| mkFontName        | An optional font name that defaults to the theme-defined one. Available flags are `mono`, `propo`, `bold`, and `italic`. | Terminess Propo Bold Italic           | Facilitates the generation of a string decribing a font name based on the font family name.                                |
-| mkTemplateContent | A template as described above, which is a function returning a string.                                                   | _A string generated from the temlate_ | Allows injecting necessary arguments to a template and generating it. This is just a helper for convenience.               |
+| Function          | Args                                                                                                                     | Example return value                  | Desc                                                                                                         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| mkRGB             | A color                                                                                                                  | rgb(0, 0, 0)                          | Expresses a color in css rgb format                                                                          |
+| mkRGBA            | A color and float alpha value                                                                                            | rgba(0, 0, 0, 0)                      | Expresses a color in css rgba format                                                                         |
+| mkHex             | A color                                                                                                                  | FFFFFF                                | Builds an hexadecimal expression of the color, without the `#`.                                              |
+| mkHexA            | A color and a hex alpha value                                                                                            | FFFFFFFF                              | Builds an hexadecimal expression of the color, with an added alpha channel and without the `#`.              |
+| mkHHex            | A color                                                                                                                  | #FFFFFF                               | Builds an hexadecimal expression of the color, with the `#`.                                                 |
+| mkHHexA           | A color and the hex alpha value                                                                                          | #FFFFFFFF                             | Builds an hexadecimal expression of the color, with an added alpha channel and with the `#`.                 |
+| mkFontName        | An optional font name that defaults to the theme-defined one. Available flags are `mono`, `propo`, `bold`, and `italic`. | Terminess Propo Bold Italic           | Facilitates the generation of a string decribing a font name based on the font family name.                  |
+| mkTemplateContent | A template as described above, which is a function returning a string.                                                   | _A string generated from the temlate_ | Allows injecting necessary arguments to a template and generating it. This is just a helper for convenience. |
 
 ## Why though ?
+
+My goal with my conf is being able to manage several hosts as well as several themes or `rices`. Having a many-to-many relation with rices and hosts made the abstraction complicated so I figured it'd be good to have some kind of library to manage it all this is the one adressing the `rices`.
 
 I tried several options available on github and none fullfilled my needs, so I descided to make one myself. It might not be better than the others. I made it the way I wanted it.
 
@@ -161,11 +178,10 @@ I am open to PRs, it'll be my pleasure to review yours.
 
 The following are the next features to be implemented. Add yours with a relevant issue or by contacting me somehow.
 
-- [x] Colors aliases
-- [x] Fix alpha on the whole thing because I'm a darn idiot
 - [ ] Documentation for referencing templates
 - [ ] CI with checking and an auto generated documentation
 - [ ] Home manager module
 - [ ] Wallpaper ?
 - [ ] Themes (cursor, GTK, SDDM)?
 - [ ] Regular dotfiles generator
+- [ ] Add dark/light themes functionalities ?
