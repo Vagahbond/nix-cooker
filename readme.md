@@ -97,15 +97,15 @@ A template is a `function` to which several arguments, including logic and data,
 
   ${mkRGB colors.base00} will provide "rgb(255, 255, 255)"
 
-  ${mkRGBA colors.base00} will provide "rgba(255, 255. 255. 255)"
+  ${mkRGBA colors.base00 1.0} will provide "rgba(255, 255. 255. 255)"
 
   ${mkHex colors.good} will provide "FFFFFF"
 
   ${mkHHex colors.base00 } will provide "#FFFFFF"
 
-  ${mkHHexA colors.base00 } will provide "#FFFFFFFF"
+  ${mkHHexA colors.base00 "FF"} will provide "#FFFFFFFF"
 
-  ${mkHexA colors.base00 } will provide "FFFFFFFF"
+  ${mkHexA colors.base00 "FF"} will provide "FFFFFFFF"
 
   You can also get your font's name : ${font.name}
 
@@ -167,7 +167,6 @@ I tried several options available on github and none fullfilled my needs, so I d
 
 Thanks a lot to writers of my sources of inspiration :
 
-- [RGBCube](https://github.com/RGBCube/ThemeNix)
 - [Misterio77](https://github.com/Misterio77/nix-colors)
 
 ## Contributing ?
@@ -178,10 +177,11 @@ I am open to PRs, it'll be my pleasure to review yours.
 
 The following are the next features to be implemented. Add yours with a relevant issue or by contacting me somehow.
 
-- [ ] Documentation for referencing templates
+- [ ] Actualize documentation
+- [ ] Scripts in templates | multi-files templates
 - [ ] CI with checking and an auto generated documentation
-- [ ] Home manager module
-- [ ] Wallpaper ?
-- [ ] Themes (cursor, GTK, SDDM)?
+- [ ] Home manager module -> light/dark theme switching
+- [x] Wallpaper ?
+- [x] Themes (cursor, GTK, SDDM)?
 - [ ] Regular dotfiles generator
 - [ ] Add dark/light themes functionalities ?
