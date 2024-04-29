@@ -9,10 +9,10 @@ in {
   options.theme = {
     font = {
       package = lib.mkOption {
-        description = "The package for the font used for this theme.";
+        description = "The package for the font used in this theme.";
         default = null;
         example = pkgs.fira-code;
-        type = lib.types.package;
+        type = lib.types.nullOr lib.types.package;
       };
 
       name = lib.mkOption {
@@ -23,12 +23,108 @@ in {
       };
     };
 
+    cursor = {
+      package = lib.mkOption {
+        description = "The package for the cursor used in this theme.";
+        default = null;
+        example = pkgs.bibata-cursors;
+        type = lib.types.nullOr lib.types.package;
+      };
+
+      name = lib.mkOption {
+        description = "Name for the cursor.";
+        default = "";
+        example = "Bibata";
+        type = lib.types.str;
+      };
+    };
+
+    gtkTheme = {
+      package = lib.mkOption {
+        description = "The package for the GTK theme used in this theme.";
+        default = null;
+        example = pkgs.catppuccin-gtk;
+        type = lib.types.nullOr lib.types.package;
+      };
+
+      name = lib.mkOption {
+        description = "Name for the GTK theme.";
+        default = "";
+        example = "Catppuccin-Mocha-Mauve-Dark";
+        type = lib.types.str;
+      };
+    };
+
+    iconsTheme = {
+      package = lib.mkOption {
+        description = "The package for the icons theme used in this theme.";
+        default = null;
+        example = pkgs.catppuccin-papirus-folders;
+        type = lib.types.nullOr lib.types.package;
+      };
+
+      name = lib.mkOption {
+        description = "Name for the icons theme.";
+        default = "";
+        example = "Papirus-Dark";
+        type = lib.types.str;
+      };
+    };
+
+    displayManagerTheme = {
+      package = lib.mkOption {
+        description = "The package for the display manager theme used in this theme.";
+        default = null;
+        example = pkgs.catppuccin-gtk;
+        type = lib.types.nullOr lib.types.package;
+      };
+
+      name = lib.mkOption {
+        description = "Name for the display manager theme.";
+        default = "";
+        example = "Catppuccin-Mocha-Mauve-Dark";
+        type = lib.types.str;
+      };
+    };
+
+    wallpaper = {
+      package = lib.mkOption {
+        description = "A package containing the wallpaper.";
+        default = null;
+        example = pkgs.catppuccin-gtk;
+        type = lib.types.nullOr lib.types.package;
+      };
+
+      name = lib.mkOption {
+        description = "Name for the wallpaper file.";
+        default = "wallpaper.jpg";
+        example = "cringeanimewallpaper.jpg";
+        type = lib.types.str;
+      };
+    };
+
+    qtTheme = {
+      package = lib.mkOption {
+        description = "The package for the QT theme used in this theme.";
+        default = null;
+        example = pkgs.catppuccin-qt5ct;
+        type = lib.types.nullOr lib.types.package;
+      };
+
+      name = lib.mkOption {
+        description = "Name for the QT theme.";
+        default = "";
+        example = "Catppuccin-Mocha-Mauve-Dark";
+        type = lib.types.str;
+      };
+    };
+
     symbolsFont = {
       package = lib.mkOption {
         description = "The package for the symbols font used for this theme.";
         default = null;
         example = pkgs.material-icons;
-        type = lib.types.package;
+        type = lib.types.nullOr lib.types.package;
       };
 
       name = lib.mkOption {
@@ -232,6 +328,18 @@ in {
         example = "#FFFFFF";
         type = mTypes.color;
       };
+      background = lib.mkOption {
+        description = "The color that you want to use as an accent for your theme";
+        default = config.theme.colors.base00;
+        example = "#FFFFFF";
+        type = mTypes.color;
+      };
+      text = lib.mkOption {
+        description = "The color that you want to use as an accent for your theme";
+        default = config.theme.colors.base04;
+        example = "#FFFFFF";
+        type = mTypes.color;
+      };
 
       custom = lib.mkOption {
         description = "Custom aliases that you might want to use for your own theme.";
@@ -239,6 +347,13 @@ in {
         example = {};
         type = lib.types.attrsOf mTypes.color;
       };
+    };
+
+    radius = lib.mkOption {
+      description = "Radius for corners of apps across system";
+      default = 6;
+      example = 6;
+      type = lib.types.int;
     };
   };
 }

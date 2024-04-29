@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: let
-in {
+{config, ...}: {
   imports = [
     ./options.nix
   ];
