@@ -5,10 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-  }: {
+  outputs = _: {
     lib = import ./lib;
 
     nixosModules.default = import ./module.nix;
