@@ -16,14 +16,14 @@
       then "Mono"
       else if propo
       then "Propo"
-      else null
+      else ""
     } ${
       if bold
       then "Bold"
-      else null
+      else ""
     } ${
       if italic
       then "Italic"
-      else null
+      else ""
     }";
 }
