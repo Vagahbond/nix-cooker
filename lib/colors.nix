@@ -18,7 +18,7 @@
 
   normalizeRGB = color:
     if builtins.isString color
-    then parseHex color
+    then parseHex (lib.strings.toUpper color)
     else color;
 
   checkRGBAAlpha = n:
@@ -40,12 +40,33 @@
     then alpha
     else throw "Invalid value given for Alpha component";
 in rec {
-  mkRGB = color: let nColor = normalizeRGB color; in "rgb(${builtins.toString nColor.r}, ${builtins.toString nColor.g}, ${builtins.toString nColor.b})";
+  mkRGB = color:
+    if color == null
+    then throw "Color cannot be null"
+    else let nColor = normalizeRGB color; in "rgb(${builtins.toString nColor.r}, ${builtins.toString nColor.g}, ${builtins.toString nColor.b})";
 
-  mkRGBA = color: alpha: let nColor = normalizeRGB color; in "rgba(${builtins.toString nColor.r}, ${builtins.toString nColor.g}, ${builtins.toString nColor.b}, ${builtins.toString (checkRGBAAlpha alpha)})";
+  mkRGBA = color: alpha:
+    if color == null
+    then throw "Color cannot be null"
+    else let nColor = normalizeRGB color; in "rgba(${builtins.toString nColor.r}, ${builtins.toString nColor.g}, ${builtins.toString nColor.b}, ${builtins.toString (checkRGBAAlpha alpha)})";
 
-  mkHHex = normalizeHex;
-  mkHex = color: builtins.substring 1 6 (normalizeHex color);
-  mkHHexA = color: alpha: "${normalizeHex color}${checkHexAlpha alpha}";
-  mkHexA = color: alpha: "${mkHex color}${checkHexAlpha alpha}";
+  mkHHex = color:
+    if color == null
+    then throw "Color cannot be null"
+    else normalizeHex;
+
+  mkHex = color:
+    if color == null
+    then throw "Color cannot be null"
+    else builtins.substring 1 6 (normalizeHex color);
+
+  mkHHexA = color: alpha:
+    if color == null
+    then throw "Color cannot be null"
+    else "${normalizeHex color}${checkHexAlpha alpha}";
+
+  mkHexA = color: alpha:
+    if color == null
+    then throw "Color cannot be null"
+    else "${mkHex color}${checkHexAlpha alpha}";
 }
