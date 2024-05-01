@@ -53,7 +53,7 @@ in rec {
   mkHHex = color:
     if color == null
     then throw "Color cannot be null"
-    else normalizeHex;
+    else normalizeHex color;
 
   mkHex = color:
     if color == null
