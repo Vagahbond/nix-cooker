@@ -9,7 +9,7 @@ in {
   options.theme = lib.mkOption {
     description = "A set of options defining a theme";
     default = null;
-    type = lib.types.nullOr lib.types.submodule {
+    type = lib.types.nullOr (lib.types.submodule {
       options = {
         font = {
           package = lib.mkOption {
@@ -360,6 +360,6 @@ in {
           type = lib.types.int;
         };
       };
-    };
+    });
   };
 }
