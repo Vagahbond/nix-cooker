@@ -29,4 +29,5 @@
   hexColor = lib.types.strMatching "^\#([0-9A-Fa-f]{2}){3,4}$";
 in {
   color = lib.types.either rgbColor hexColor;
+  template = lib.types.either lib.types.str (lib.types.attrsOf lib.types.str);
 }

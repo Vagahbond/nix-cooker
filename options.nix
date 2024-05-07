@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  mTypes = import ./types.nix {inherit lib;};
+  mTypes = import ./lib/types.nix {inherit lib;};
 in {
   options.theme = lib.mkOption {
     description = "A set of options defining a theme";
@@ -142,7 +142,7 @@ in {
         templates = lib.mkOption {
           description = "Store a template to use it in your conf.";
           default = {};
-          type = lib.types.attrsOf lib.types.str;
+          type = lib.types.attrsOf mTypes.template;
         };
 
         colors = {
