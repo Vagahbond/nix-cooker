@@ -36,7 +36,7 @@
     else "#${parseDec color.r}${parseDec color.g}${parseDec color.b}";
 
   checkHexAlpha = alpha:
-    if builtins.match "[1-9a-fA-F]{2}" alpha != null
+    if builtins.match "[0-9a-fA-F]{2}" alpha != null
     then alpha
     else throw "Invalid value given for Alpha component";
 in rec {
